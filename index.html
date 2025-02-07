@@ -16,6 +16,7 @@
             color: white;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             margin-top: 20vh;
+            display: none;
         }
         .heart {
             position: absolute;
@@ -50,11 +51,43 @@
             left: calc(50% - 50px + (Math.random() * 100px - 50px));
             top: calc(50% + (Math.random() * 100px - 50px));
         }
+        .envelope {
+            position: relative;
+            width: 150px;
+            height: 100px;
+            background: red;
+            margin: 50px auto;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+        }
+        .envelope:before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 75px solid transparent;
+            border-right: 75px solid transparent;
+            border-bottom: 50px solid darkred;
+            top: -50px;
+        }
+        .message {
+            display: none;
+            font-size: 2em;
+            color: white;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
-    <h1>Will You Be My Valentine?</h1>
-    <div class="buttons">
+    <div class="envelope" onclick="openEnvelope()">
+        💌
+    </div>
+    <h1 id="valentineMessage">Will You Be My Valentine?</h1>
+    <div class="buttons" style="display: none;" id="buttons">
         <button class="yes" onclick="showLove()">Yes!</button>
         <button class="no">No</button>
     </div>
@@ -70,6 +103,12 @@
             setTimeout(() => heart.remove(), 5000);
         }
         setInterval(createHeart, 300);
+
+        function openEnvelope() {
+            document.querySelector(".envelope").style.display = "none";
+            document.getElementById("valentineMessage").style.display = "block";
+            document.getElementById("buttons").style.display = "block";
+        }
 
         function showLove() {
             alert("Yay! Love you so much! ❤️");

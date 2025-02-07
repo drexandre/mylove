@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: pink;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 3em;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-top: 20vh;
+        }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 2em;
+            animation: float 5s infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(-100px); opacity: 0.7; }
+            100% { transform: translateY(-200px); opacity: 0; }
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 1.5em;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .yes {
+            background-color: lightgreen;
+        }
+        .no {
+            background-color: lightcoral;
+        }
+        .no:hover {
+            position: absolute;
+            left: calc(50% - 50px + (Math.random() * 100px - 50px));
+            top: calc(50% + (Math.random() * 100px - 50px));
+        }
+    </style>
+</head>
+<body>
+    <h1>Will You Be My Valentine?</h1>
+    <div class="buttons">
+        <button class="yes" onclick="showLove()">Yes!</button>
+        <button class="no">No</button>
+    </div>
+    <script>
+        function createHeart() {
+            let heart = document.createElement("div");
+            heart.innerHTML = "❤️";
+            heart.classList.add("heart");
+            document.body.appendChild(heart);
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.top = "100vh";
+            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 300);
+
+        function showLove() {
+            alert("Yay! Love you so much! ❤️");
+        }
+    </script>
+</body>
+</html>

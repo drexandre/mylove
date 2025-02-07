@@ -10,6 +10,7 @@
             background-color: pink;
             font-family: 'Arial', sans-serif;
             overflow: hidden;
+            position: relative;
         }
         h1 {
             font-size: 3em;
@@ -53,8 +54,8 @@
         }
         .envelope {
             position: relative;
-            width: 150px;
-            height: 100px;
+            width: 200px;
+            height: 150px;
             background: red;
             margin: 50px auto;
             cursor: pointer;
@@ -63,16 +64,24 @@
             justify-content: center;
             border-radius: 10px;
             box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+            animation: bounce 2s infinite;
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
         }
         .envelope:before {
             content: '';
             position: absolute;
             width: 0;
             height: 0;
-            border-left: 75px solid transparent;
-            border-right: 75px solid transparent;
-            border-bottom: 50px solid darkred;
-            top: -50px;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 75px solid darkred;
+            top: -75px;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
         .message {
             display: none;
@@ -84,7 +93,7 @@
 </head>
 <body>
     <div class="envelope" onclick="openEnvelope()">
-        💌
+        💌 Click to Open
     </div>
     <h1 id="valentineMessage">Will You Be My Valentine?</h1>
     <div class="buttons" style="display: none;" id="buttons">
@@ -102,7 +111,7 @@
             heart.style.animationDuration = Math.random() * 3 + 2 + "s";
             setTimeout(() => heart.remove(), 5000);
         }
-        setInterval(createHeart, 300);
+        setInterval(createHeart, 200);
 
         function openEnvelope() {
             document.querySelector(".envelope").style.display = "none";

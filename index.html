@@ -18,6 +18,11 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             margin-top: 20vh;
             display: none;
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
         .heart {
             position: absolute;
@@ -32,6 +37,7 @@
         }
         .buttons {
             margin-top: 20px;
+            animation: fadeIn 2s ease-in-out;
         }
         button {
             font-size: 1.5em;
@@ -54,8 +60,8 @@
         }
         .envelope {
             position: relative;
-            width: 200px;
-            height: 150px;
+            width: 250px;
+            height: 180px;
             background: red;
             margin: 50px auto;
             cursor: pointer;
@@ -66,7 +72,7 @@
             box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
             animation: bounce 2s infinite;
             color: white;
-            font-size: 1.2em;
+            font-size: 1.5em;
             font-weight: bold;
         }
         .envelope:before {
@@ -74,24 +80,25 @@
             position: absolute;
             width: 0;
             height: 0;
-            border-left: 100px solid transparent;
-            border-right: 100px solid transparent;
-            border-bottom: 75px solid darkred;
-            top: -75px;
+            border-left: 125px solid transparent;
+            border-right: 125px solid transparent;
+            border-bottom: 90px solid darkred;
+            top: -90px;
         }
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
-        .message {
-            display: none;
-            font-size: 2em;
-            color: white;
-            margin-top: 20px;
+        @keyframes confetti {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100vh); }
         }
     </style>
 </head>
 <body>
+    <audio id="bgMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
     <div class="envelope" onclick="openEnvelope()">
         💌 Click to Open
     </div>
@@ -111,12 +118,13 @@
             heart.style.animationDuration = Math.random() * 3 + 2 + "s";
             setTimeout(() => heart.remove(), 5000);
         }
-        setInterval(createHeart, 200);
+        setInterval(createHeart, 150);
 
         function openEnvelope() {
             document.querySelector(".envelope").style.display = "none";
             document.getElementById("valentineMessage").style.display = "block";
             document.getElementById("buttons").style.display = "block";
+            document.getElementById("bgMusic").play();
         }
 
         function showLove() {
